@@ -9,7 +9,7 @@ import (
 
 // linkReady will return true when its ok to bind the ndp listener to it.
 // it will wait for the TX counter to start incrementing since before thats the case
-// there are certain aspects not fulfilled. (i.e. link local may not yet be assinged etc
+// there are certain aspects not fulfilled. (i.e. link local may not yet be assigned etc
 // it will also help on edge cases where the interface is not yet fully provisioned even though up
 func linkReady(l *netlink.LinkAttrs) bool {
 	if l.OperState == 6 && l.Flags&net.FlagUp == net.FlagUp {

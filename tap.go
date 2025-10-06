@@ -38,7 +38,7 @@ func NewTap(idx int) (*Tap, error) {
 
 	if hostRoutes == nil && subnets == nil {
 		return nil, fmt.Errorf(
-			"neither host nor subnet routes to this tap. this may be a private vlan interface, ignoring comletely",
+			"neither host nor subnet routes to this tap. this may be a private vlan interface, ignoring completely",
 		)
 	}
 
@@ -71,7 +71,7 @@ func (t Tap) Listen() error {
 	var err error
 
 	// need this hacky loop since there are occasions where the OS seems to lock the tap for about 15sec (or sometimes longer)
-	// on innitial creation. causing the dialer to fail.
+	// on initial creation. causing the dialer to fail.
 	// this loop checks the context for cancellation but otherwise continues to re-try
 	counter := 0
 	for {

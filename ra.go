@@ -21,7 +21,7 @@ func (t Tap) doRA(c *ndp.Conn) error {
 	return eg.Wait()
 }
 
-// tiggers RouterAdvertisements every Interval duration or when a RouterSolicit was received on the interface
+// triggers RouterAdvertisements every Interval duration or when a RouterSolicit was received on the interface
 func (t Tap) sendLoop(ctx context.Context, c *ndp.Conn) error {
 	var options = []ndp.Option{
 		&ndp.LinkLayerAddress{
@@ -48,7 +48,7 @@ func (t Tap) sendLoop(ctx context.Context, c *ndp.Conn) error {
 		Options:                   options,
 	}
 
-	// Send messages until cancelation or error.
+	// Send messages until cancellation or error.
 	count := 0
 	for {
 		ll.WithFields(ll.Fields{"Interface": t.Ifi.Name}).Debugf("%s sent RA prefix %s", t.Ifi.Name, t.Prefix)
@@ -95,7 +95,7 @@ func (t Tap) receiveLoop(ctx context.Context, c *ndp.Conn) error {
 	}
 }
 
-// receiveRS reads RouterSolicitsts but tries to keep it brief
+// receiveRS reads RouterSolicits but tries to keep it brief
 func receiveRS(c *ndp.Conn) (ndp.Message, net.IP, error) {
 	if err := c.SetReadDeadline(time.Now().Add(1 * time.Second)); err != nil {
 		return nil, nil, fmt.Errorf("failed to set deadline: %v", err)

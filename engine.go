@@ -30,7 +30,7 @@ func NewEngine(regex string) (*Engine, error) {
 	}, nil
 }
 
-// Qualifies checks if interface qulalifies, aka matches the regex for taps to be handled
+// Qualifies checks if interface qualifies, aka matches the regex for taps to be handled
 func (e *Engine) Qualifies(ifName string) bool {
 	return e.regex.Match([]byte(ifName))
 }
@@ -69,7 +69,7 @@ func (e *Engine) Add(ifIdx int) {
 	}()
 }
 
-// Get returns a lookedup Tap interface thread safe
+// Get returns a looked up Tap interface thread safe
 func (e *Engine) Get(ifIdx int) Tap {
 	e.lock.RLock()
 	defer e.lock.RUnlock()
